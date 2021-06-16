@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    render json: { version: 'v1.0.0'}
   end
 
   def up
