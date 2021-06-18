@@ -61,10 +61,7 @@ ENV RAILS_ENV="${RAILS_ENV}" \
     USER="ruby"
 
 COPY --chown=ruby:ruby --from=webpacker /usr/local/bundle /usr/local/bundle
-COPY --chown=ruby:ruby --from=webpacker /app/public /public
 COPY --chown=ruby:ruby . .
-
-ENTRYPOINT ["/app/bin/docker-entrypoint-web"]
 
 EXPOSE 8000
 
