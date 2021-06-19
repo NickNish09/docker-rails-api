@@ -1,6 +1,7 @@
 FROM ruby:3.0.1-slim-buster AS webpacker
 LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
 
+RUN mkdir /app
 WORKDIR /app
 
 RUN apt-get update \
