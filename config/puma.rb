@@ -1,6 +1,6 @@
 require "etc"
 
-bind "tcp://0.0.0.0:#{ENV.fetch("PORT") { "8000" }}"
+bind "tcp://0.0.0.0:#{ENV.fetch("PORT") { "80" }}"
 environment ENV.fetch("RAILS_ENV") { "production" }
 
 # Puma can serve each request in a thread from an internal thread pool.

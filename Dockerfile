@@ -1,8 +1,6 @@
 FROM ruby:3.0.1-slim-buster AS webpacker
 LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
 
-RUN mkdir /app
-RUN chmod 777 /app
 WORKDIR /app
 
 RUN apt-get update \
@@ -33,9 +31,6 @@ ENV RAILS_ENV="${RAILS_ENV}" \
 
 COPY --chown=ruby:ruby . .
 
-RUN if [ "${RAILS_ENV}" != "development" ]; then \
-  SECRET_KEY_BASE=dummyvalue rails assets:precompile; fi
-
 CMD ["bash"]
 
 #
@@ -43,8 +38,6 @@ CMD ["bash"]
 FROM ruby:3.0.1-slim-buster AS app
 LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
 
-RUN mkdir /app
-RUN chmod 777 /app
 WORKDIR /app
 
 RUN apt-get update \
@@ -67,6 +60,6 @@ ENV RAILS_ENV="${RAILS_ENV}" \
 COPY --chown=ruby:ruby --from=webpacker /usr/local/bundle /usr/local/bundle
 COPY --chown=ruby:ruby . .
 
-EXPOSE 8000
+EXPOSE 80
 
 CMD ["rails", "s"]
